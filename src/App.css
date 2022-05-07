@@ -7,7 +7,7 @@ body {
   color: white;
   font-family: "Lato", sans-serif;
 }
-h1{
+h1 {
   font-size: 80px;
 }
 .parent-row {
@@ -18,12 +18,12 @@ textarea {
   background-color: transparent !important;
   color: #fff !important;
   font-size: calc(24px + 2vmin) !important;
-  border: 2px solid #fff!important;
+  border: 2px solid #fff !important;
 }
 
 .error {
   animation: shake 0.8s;
-  border: 2px solid red!important;
+  border: 2px solid red !important;
 }
 @keyframes shake {
   0% {
@@ -41,8 +41,15 @@ textarea {
   }
 }
 
-.seconds{
+.seconds {
   position: fixed;
   top: 10px;
   left: 20px;
+}
+.unselectable {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

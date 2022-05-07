@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -13,7 +12,7 @@ function App() {
   const startTyping = (e) => {
     seterror(false);
     const arr = e.target.value.split("");
-    if (arr.length == 1 && started == false) {
+    if (arr.length === 1 && started === false) {
       const newIntervalId = setInterval(() => {
         setTimer((prevCount) => prevCount + 1);
       }, 1000);
@@ -32,7 +31,7 @@ function App() {
 
       if (
         arr.length === text.split("").length &&
-        arr[text.length - 1] == text.split("")[arr.length - 1]
+        arr[text.length - 1] === text.split("")[arr.length - 1]
       ) {
         clearInterval(intervalId);
         setIntervalId(0);
@@ -45,6 +44,9 @@ function App() {
     }
   };
   useEffect(() => {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
     fetchText();
   }, []);
 
@@ -72,8 +74,10 @@ function App() {
       <div className="row parent-row">
         {result === 0 && (
           <div className="col-lg-8 offset-lg-2">
-            <p className="seconds"><i class="fa-solid fa-clock"></i>&nbsp; {timer}</p>
-            <p>{text != "" ? text : "Loading..."}</p>
+            <p className="seconds">
+              <i class="fa-solid fa-clock"></i>&nbsp; {timer}
+            </p>
+            <p className="unselectable">{text !== "" ? text : "Loading..."}</p>
             <div className="form-group">
               <textarea
                 name="typing"
@@ -81,6 +85,16 @@ function App() {
                 className={`form-control ${error ? "error" : ""}`}
                 onChange={(e) => startTyping(e)}
                 value={value}
+                onPaste={(e) => {
+                  e.preventDefault();
+                  alert("Nice Try! But copy paste is not allowed..xD");
+                  return false;
+                }}
+                onCopy={(e) => {
+                  e.preventDefault();
+                  alert("Nice Try! But copy paste is not allowed..xD");
+                  return false;
+                }}
               ></textarea>
             </div>
             <div className="text-center w-100">
@@ -90,7 +104,7 @@ function App() {
             </div>
           </div>
         )}
-        {result != 0 ? (
+        {result !== 0 ? (
           <div className="col-lg-8 offset-lg-2 text-center">
             <p>Your Typing Speed is</p>
             <h1>
